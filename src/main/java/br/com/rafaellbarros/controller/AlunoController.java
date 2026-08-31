@@ -22,44 +22,32 @@ public class AlunoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AlunoEntity> findById(@PathVariable Long id) {
+    public ResponseEntity<AlunoEntity> findById(@PathVariable final Long id) {
         return alunoService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/matricula/{matricula}")
-    public ResponseEntity<AlunoEntity> findByMatricula(@PathVariable String matricula) {
-        try {
-            return ResponseEntity.ok(alunoService.findByMatricula(matricula));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<AlunoEntity> findByMatricula(@PathVariable final String matricula) throws RuntimeException {
+        return ResponseEntity.ok(alunoService.findByMatricula(matricula));
     }
 
     @PostMapping
-    public ResponseEntity<AlunoEntity> create(@RequestBody Aluno aluno) {
-        AlunoEntity saved = alunoService.save(aluno);
+    public ResponseEntity<AlunoEntity> create(@RequestBody final Aluno aluno) {
+        final AlunoEntity saved = alunoService.save(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AlunoEntity> update(@PathVariable Long id, @RequestBody Aluno aluno) {
-        try {
-            return ResponseEntity.ok(alunoService.update(id, aluno));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<AlunoEntity> update(@PathVariable final Long id, @RequestBody final Aluno aluno) throws RuntimeException {
+        return ResponseEntity.ok(alunoService.update(id, aluno));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        try {
-            alunoService.delete(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> delete(@PathVariable final Long id) throws RuntimeException {
+        alunoService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

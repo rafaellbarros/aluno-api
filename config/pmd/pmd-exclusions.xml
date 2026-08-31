@@ -2,40 +2,96 @@
 <suppressions xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
-                                  http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+                                  https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-    <!-- TESTES -->
-    <suppress checks="CyclomaticComplexity, NPathComplexity, NcssCount, GodClass, MethodTooLong, TooManyMethods"
-              files=".*Test\.java|.*IT\.java" />
+    <!-- ========================================================== -->
+    <!-- 1. TESTES                                                  -->
+    <!-- ========================================================== -->
+    <suppress checks="CyclomaticComplexity|NPathComplexity|NcssCount|GodClass|CognitiveComplexity|TooManyMethods|TooManyFields|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal"
+              files=".*Test\.java|.*IT\.java"/>
 
-    <!-- DTOs/RECORDS -->
-    <suppress checks="TooManyFields, DataClass, ImmutableField, ShortVariableName"
-              files=".*Dto\.java|.*DTO\.java|.*Record\.java|.*Request\.java|.*Response\.java" />
+    <!-- ========================================================== -->
+    <!-- 2. CONTROLLERS (APIs REST)                                -->
+    <!-- ========================================================== -->
+    <suppress checks="MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal|ShortVariable|AvoidCatchingGenericException"
+              files=".*Controller\.java"/>
 
-    <!-- ENTITIES -->
-    <suppress checks="TooManyFields, ImmutableField, DataClass"
-              files=".*Entity\.java" />
+    <!-- ========================================================== -->
+    <!-- 3. SERVICES                                                -->
+    <!-- ========================================================== -->
+    <suppress checks="MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal|ShortVariable"
+              files=".*Service\.java"/>
 
-    <!-- ENUMS -->
-    <suppress checks="TooManyMethods, TooManyFields"
-              files=".*Enum\.java" />
+    <!-- ========================================================== -->
+    <!-- 4. DTOS/REQUESTS/RESPONSES                                 -->
+    <!-- ========================================================== -->
+    <suppress checks="TooManyFields|TooManyMethods|DataClass|ShortVariable|ImmutableField|FinalFieldCouldBeStatic|FieldNamingConventions|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal|MissingSerialVersionUID"
+              files=".*Dto\.java|.*DTO\.java|.*Request\.java|.*Response\.java"/>
 
-    <!-- CONSTANTS -->
-    <suppress checks="AvoidDuplicateLiterals, TooManyFields"
-              files=".*Constants\.java|.*Const\.java" />
+    <!-- ========================================================== -->
+    <!-- 5. ENTITIES                                                -->
+    <!-- ========================================================== -->
+    <suppress checks="TooManyFields|ImmutableField|DataClass|ShortVariable|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal"
+              files=".*Entity\.java"/>
 
-    <!-- CONFIGURATIONS -->
-    <suppress checks="TooManyMethods, TooManyFields"
-              files=".*Config\.java|.*Configuration\.java" />
+    <!-- ========================================================== -->
+    <!-- 6. ENUMS                                                   -->
+    <!-- ========================================================== -->
+    <suppress checks="TooManyMethods|TooManyFields|ShortVariable|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal"
+              files=".*Enum\.java"/>
 
-    <!-- MAIN METHOD -->
-    <suppress checks="MethodTooLong, CyclomaticComplexity, NPathComplexity"
-              files=".*"
-              lines=".*main\(String\[\].*" />
+    <!-- ========================================================== -->
+    <!-- 7. CONSTANTS                                               -->
+    <!-- ========================================================== -->
+    <suppress checks="AvoidDuplicateLiterals|TooManyFields|ShortVariable|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal"
+              files=".*Constants\.java|.*Const\.java"/>
 
-    <!-- EQUALS/HASHCODE/TOSTRING -->
-    <suppress checks="MethodTooLong, CyclomaticComplexity, NPathComplexity"
-              files=".*"
-              lines=".*(equals|hashCode|toString).*" />
+    <!-- ========================================================== -->
+    <!-- 8. CONFIGURATIONS                                          -->
+    <!-- ========================================================== -->
+    <suppress checks="TooManyMethods|TooManyFields|ImmutableField|FinalFieldCouldBeStatic|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal"
+              files=".*Config\.java|.*Configuration\.java|.*Properties\.java"/>
+
+    <!-- ========================================================== -->
+    <!-- 9. MAPPER                                                  -->
+    <!-- ========================================================== -->
+    <suppress checks="TooManyMethods|TooManyFields|ShortVariable|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal"
+              files=".*Mapper\.java"/>
+
+    <!-- ========================================================== -->
+    <!-- 10. MAIN APPLICATION                                       -->
+    <!-- ========================================================== -->
+    <suppress checks="CyclomaticComplexity|NPathComplexity|CognitiveComplexity|MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal"
+              files=".*Application\.java"/>
+
+    <!-- ========================================================== -->
+    <!-- 11. LOGGER - Permissão para campos de logger              -->
+    <!-- ========================================================== -->
+    <suppress checks="MoreThanOneLogger|FieldNamingConventions"
+              files=".*"/>
+
+    <!-- ========================================================== -->
+    <!-- 12. RECURSOS E STREAMS - Exceções para try-with-resources -->
+    <!-- ========================================================== -->
+    <suppress checks="CloseResource|UseTryWithResources"
+              files=".*Test\.java|.*IT\.java"/>
+
+    <!-- ========================================================== -->
+    <!-- 13. EXCEÇÕES - Permitir em casos específicos              -->
+    <!-- ========================================================== -->
+    <suppress checks="AvoidCatchingGenericException"
+              files=".*ExceptionHandler\.java|.*GlobalExceptionHandler\.java|.*ErrorHandler\.java"/>
+
+    <!-- ========================================================== -->
+    <!-- 14. REPOSITORIES                                           -->
+    <!-- ========================================================== -->
+    <suppress checks="MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal|ShortVariable|TooManyMethods"
+              files=".*Repository\.java"/>
+
+    <!-- ========================================================== -->
+    <!-- 15. UTILITIES                                              -->
+    <!-- ========================================================== -->
+    <suppress checks="MethodArgumentCouldBeFinal|LocalVariableCouldBeFinal|ShortVariable|TooManyMethods"
+              files=".*Utils\.java|.*Util\.java|.*Helper\.java|.*Builder\.java|.*Factory\.java"/>
 
 </suppressions>

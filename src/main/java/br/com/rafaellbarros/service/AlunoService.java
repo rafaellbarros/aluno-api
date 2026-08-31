@@ -18,22 +18,22 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
-    public Optional<AlunoEntity> findById(Long id) {
+    public Optional<AlunoEntity> findById(final Long id) {
         return alunoRepository.findById(id);
     }
 
-    public AlunoEntity findByMatricula(String matricula) {
+    public AlunoEntity findByMatricula(final String matricula) {
         return alunoRepository.findByMatricula(matricula).orElseThrow(
                 () -> new RuntimeException("Aluno não encontrado com matrícula: " + matricula));
     }
 
-    public AlunoEntity save(Aluno aluno) {
-        AlunoEntity entity = mapToEntity(aluno);
+    public AlunoEntity save(final Aluno aluno) {
+        final AlunoEntity entity = mapToEntity(aluno);
         return alunoRepository.save(entity);
     }
 
-    public AlunoEntity update(Long id, Aluno aluno) {
-        AlunoEntity existing = alunoRepository.findById(id).orElseThrow(
+    public AlunoEntity update(final Long id, final Aluno aluno) {
+        final AlunoEntity existing = alunoRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Aluno não encontrado com ID: " + id));
 
         existing.setNome(aluno.getNome());
@@ -44,15 +44,15 @@ public class AlunoService {
         return alunoRepository.save(existing);
     }
 
-    public void delete(Long id) {
+    public void delete(final Long id) {
         if (!alunoRepository.existsById(id)) {
             throw new RuntimeException("Aluno não encontrado com ID: " + id);
         }
         alunoRepository.deleteById(id);
     }
 
-    private AlunoEntity mapToEntity(Aluno aluno) {
-        AlunoEntity entity = new AlunoEntity();
+    private AlunoEntity mapToEntity(final Aluno aluno) {
+        final AlunoEntity entity = new AlunoEntity();
         entity.setNome(aluno.getNome());
         entity.setIdade(aluno.getIdade());
         entity.setSexo(aluno.getSexo());
