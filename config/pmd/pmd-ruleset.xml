@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         name="Clean Code PMD Ruleset"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>
+        Regras PMD baseadas em Clean Code e Clean Architecture
+        para projetos Java (Spring Boot, Quarkus, Java EE)
+    </description>
+
+    <!-- ============================================ -->
+    <!-- EXCLUSÕES GLOBAIS                            -->
+    <!-- ============================================ -->
+    <exclude-pattern>.*/target/.*</exclude-pattern>
+    <exclude-pattern>.*/generated-sources/.*</exclude-pattern>
+    <exclude-pattern>.*/test/.*</exclude-pattern>
+    <exclude-pattern>.*/model/dto/.*</exclude-pattern>
+    <exclude-pattern>.*/dto/.*</exclude-pattern>
+
+    <!-- ============================================ -->
+    <!-- BEST PRACTICES                               -->
+    <!-- ============================================ -->
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="UseVarargs"/>
+        <exclude name="AccessorClassGeneration"/>
+        <exclude name="AvoidStringBufferField"/>
+    </rule>
+
+    <rule ref="category/java/bestpractices.xml/MissingOverride">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/LooseCoupling">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedLocalVariable">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedFormalParameter">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/SystemPrintln">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/ReturnEmptyCollectionRatherThanNull">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/SuppressWarnings">
+        <priority>1</priority>
+    </rule>
+
+    <!-- ============================================ -->
+    <!-- PERFORMANCE                                  -->
+    <!-- ============================================ -->
+    <rule ref="category/java/performance.xml">
+        <exclude name="UseArrayListInsteadOfVector"/>
+        <exclude name="UseStringBufferForStringAppends"/>
+        <exclude name="InsufficientStringBufferDeclaration"/>
+    </rule>
+
+    <rule ref="category/java/performance.xml/AppendCharacterWithChar">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/performance.xml/UseStringBufferLength">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/performance.xml/StringInstantiation">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/performance.xml/UseArraysAsList">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/performance.xml/AvoidFileStream">
+        <priority>1</priority>
+    </rule>
+
+    <!-- ============================================ -->
+    <!-- DESIGN (Clean Architecture)                  -->
+    <!-- ============================================ -->
+    <rule ref="category/java/design.xml/GodClass">
+        <properties>
+            <property name="minimum" value="1000.0"/>
+        </properties>
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="threshold" value="25"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/ExcessiveImports">
+        <properties>
+            <property name="topscore" value="40.0"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/ExcessiveParameterList">
+        <properties>
+            <property name="minimum" value="6"/>
+        </properties>
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="classReportLevel" value="80"/>
+            <property name="methodReportLevel" value="10"/>
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Interface='true']"/>
+        </properties>
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/NPathComplexity">
+        <properties>
+            <property name="minimum" value="200.0"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="20"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="10"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="30"/>
+            <property name="classReportLevel" value="500"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============================================ -->
+    <!-- CODE STYLE                                   -->
+    <!-- ============================================ -->
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="MDBAndSessionBeanNamingConvention"/>
+        <exclude name="RemoteSessionInterfaceNamingConvention"/>
+        <exclude name="LocalInterfaceSessionNamingConvention"/>
+        <exclude name="LocalHomeNamingConvention"/>
+        <exclude name="RemoteInterfaceNamingConvention"/>
+        <exclude name="AvoidUsingNativeCode"/>
+        <exclude name="TooManyStaticImports"/>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ControlStatementBraces">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/FieldNamingConventions">
+        <properties>
+            <property name="violationsSuppressRegex" value="^(serialVersionUID|logger|LOG)$"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+        <properties>
+            <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]+(Utils?|Helper|Factory|Builder|Processor)$"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============================================ -->
+    <!-- ERROR PRONE                                  -->
+    <!-- ============================================ -->
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="AvoidCatchingNPE"/>
+        <exclude name="AvoidLiteralsInIfCondition"/>
+        <exclude name="DoNotCallGarbageCollectionExplicitly"/>
+        <exclude name="NonCaseLabelInSwitchStatement"/>
+        <exclude name="EmptyFinallyBlock"/>
+        <exclude name="AvoidEnumAsIdentifier"/>
+        <exclude name="AvoidAssertAsIdentifier"/>
+    </rule>
+
+    <rule ref="category/java/errorprone.xml/CloseResource">
+        <properties>
+            <property name="types" value="[java.sql.Connection,java.sql.Statement,java.sql.ResultSet,java.io.OutputStream,java.io.InputStream,java.io.Writer,java.io.Reader,java.io.Closeable,java.lang.AutoCloseable]"/>
+        </properties>
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/EqualsNull">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/OverrideBothEqualsAndHashcode">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+        <properties>
+            <property name="maxDuplicateLiterals" value="5"/>
+            <property name="minimumLength" value="3"/>
+            <property name="skipAnnotations" value="true"/>
+            <property name="exceptionList" value="0,1,2,true,false,null,NULL"/>
+        </properties>
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
+        <properties>
+            <property name="allowCommentedBlocks" value="true"/>
+        </properties>
+        <priority>2</priority>
+    </rule>
+
+    <!-- ============================================ -->
+    <!-- MULTITHREADING                               -->
+    <!-- ============================================ -->
+    <rule ref="category/java/multithreading.xml">
+        <exclude name="DoNotUseThreads"/>
+        <exclude name="AvoidUsingVolatile"/>
+        <exclude name="AvoidThreadGroup"/>
+    </rule>
+
+    <rule ref="category/java/multithreading.xml/AvoidSynchronizedAtMethodLevel">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/multithreading.xml/UseConcurrentHashMap">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/multithreading.xml/UseNotifyAllInsteadOfNotify">
+        <priority>2</priority>
+    </rule>
+
+    <!-- ============================================ -->
+    <!-- SECURITY                                     -->
+    <!-- ============================================ -->
+    <rule ref="category/java/security.xml/HardCodedCryptoKey">
+        <priority>1</priority>
+    </rule>
+    <rule ref="category/java/security.xml/InsecureCryptoIv">
+        <priority>1</priority>
+    </rule>
+
+    <!-- ============================================ -->
+    <!-- CLEAN CODE CUSTOM RULES                      -->
+    <!-- ============================================ -->
+    <rule name="MethodTooLong"
+          language="java"
+          message="Method is too long ({0} lines). Consider refactoring to smaller methods."
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>Methods should be short and do one thing only (Clean Code principle).</description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                    //MethodDeclaration[string-length(@Image) > 0]
+                    [count(../descendant::Block/BlockStatement) > 20]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule name="TooManyParameters"
+          language="java"
+          message="Too many parameters ({0}). Consider using a parameter object."
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>Methods should have few parameters (Clean Code principle).</description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                    //MethodDeclaration/FormalParameters[count(FormalParameter) > 5]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule name="ShortVariableName"
+          language="java"
+          message="Variable ''{0}'' is too short (length: {1}). Use descriptive names."
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>Variable names should be descriptive (Clean Code principle).</description>
+        <priority>3</priority>
+        <properties>
+            <property name="minimum" type="Integer" value="2"/>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                    //VariableDeclaratorId[string-length(@Image) < $minimum]
+                    [not(ancestor::ForInit)]
+                    [not(ancestor::EnhancedForStatement)]
+                    [not(@Image = 'i' or @Image = 'j' or @Image = 'k')]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+</ruleset>

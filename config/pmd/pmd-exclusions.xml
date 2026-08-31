@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<suppressions xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                                  http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <!-- TESTES -->
+    <suppress checks="CyclomaticComplexity, NPathComplexity, NcssCount, GodClass, MethodTooLong, TooManyMethods"
+              files=".*Test\.java|.*IT\.java" />
+
+    <!-- DTOs/RECORDS -->
+    <suppress checks="TooManyFields, DataClass, ImmutableField, ShortVariableName"
+              files=".*Dto\.java|.*DTO\.java|.*Record\.java|.*Request\.java|.*Response\.java" />
+
+    <!-- ENTITIES -->
+    <suppress checks="TooManyFields, ImmutableField, DataClass"
+              files=".*Entity\.java" />
+
+    <!-- ENUMS -->
+    <suppress checks="TooManyMethods, TooManyFields"
+              files=".*Enum\.java" />
+
+    <!-- CONSTANTS -->
+    <suppress checks="AvoidDuplicateLiterals, TooManyFields"
+              files=".*Constants\.java|.*Const\.java" />
+
+    <!-- CONFIGURATIONS -->
+    <suppress checks="TooManyMethods, TooManyFields"
+              files=".*Config\.java|.*Configuration\.java" />
+
+    <!-- MAIN METHOD -->
+    <suppress checks="MethodTooLong, CyclomaticComplexity, NPathComplexity"
+              files=".*"
+              lines=".*main\(String\[\].*" />
+
+    <!-- EQUALS/HASHCODE/TOSTRING -->
+    <suppress checks="MethodTooLong, CyclomaticComplexity, NPathComplexity"
+              files=".*"
+              lines=".*(equals|hashCode|toString).*" />
+
+</suppressions>
