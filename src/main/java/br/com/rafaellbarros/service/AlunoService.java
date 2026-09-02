@@ -1,12 +1,12 @@
 package br.com.rafaellbarros.service;
 
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 import br.com.rafaellbarros.entity.AlunoEntity;
 import br.com.rafaellbarros.model.Aluno;
 import br.com.rafaellbarros.repository.AlunoRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +23,7 @@ public class AlunoService {
     }
 
     public AlunoEntity findByMatricula(final String matricula) {
-        return alunoRepository.findByMatricula(matricula).orElseThrow(
-                () -> new RuntimeException("Aluno não encontrado com matrícula: " + matricula));
+        return alunoRepository.findByMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno não encontrado com matrícula: " + matricula));
     }
 
     public AlunoEntity save(final Aluno aluno) {
@@ -33,8 +32,7 @@ public class AlunoService {
     }
 
     public AlunoEntity update(final Long id, final Aluno aluno) {
-        final AlunoEntity existing = alunoRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Aluno não encontrado com ID: " + id));
+        final AlunoEntity existing = alunoRepository.findById(id).orElseThrow(() -> new RuntimeException("Aluno não encontrado com ID: " + id));
 
         existing.setNome(aluno.getNome());
         existing.setIdade(aluno.getIdade());

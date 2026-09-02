@@ -1,269 +1,77 @@
 <?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
-<module name="Checker">
-    <property name="severity" value="error"/>
-    <property name="charset" value="UTF-8"/>
-    <property name="fileExtensions" value="java"/>
+<suppressions>
 
-    <!-- Suppressions -->
-    <module name="SuppressionFilter">
-        <property name="file" value="${config_loc}/suppressions.xml"/>
-    </module>
+    <!-- ========================================================== -->
+    <!-- TESTES - Menos restrições                                  -->
+    <!-- ========================================================== -->
+    <suppress checks="MethodLength|CyclomaticComplexity|MagicNumber|NPathComplexity|ReturnCount|VisibilityModifier"
+              files=".*[\\/]src[\\/](test)[\\/].*"/>
 
-    <!-- Arquivos pequenos (Uncle Bob) -->
-    <module name="FileLength">
-        <property name="max" value="1000"/>
-    </module>
+    <suppress checks="MagicNumber"
+              files=".*[\\/]src[\\/](test)[\\/].*"/>
 
-    <!-- Linhas de até 150 caracteres -->
-    <module name="LineLength">
-        <property name="max" value="150"/>
-        <property name="ignorePattern" value="^package.*|^import.*|^ *\* *https?://.*"/>
-    </module>
+    <suppress checks="MethodName"
+              files=".*[\\/]src[\\/](test)[\\/].*"/>
 
-    <!-- Final de arquivo com newline -->
-    <module name="NewlineAtEndOfFile">
-        <property name="lineSeparator" value="lf"/>
-    </module>
+    <suppress checks="MultipleStringLiterals"
+              files=".*[\\/]src[\\/](test)[\\/].*"/>
 
-    <!-- Proíbe tabs -->
-    <module name="FileTabCharacter">
-        <property name="eachLine" value="true"/>
-    </module>
+    <!-- ========================================================== -->
+    <!-- DTOS - Permite campos compactos                           -->
+    <!-- ========================================================== -->
+    <suppress checks="MagicNumber|FinalClass|VisibilityModifier|HiddenField|HideUtilityClassConstructor|EmptyLineSeparator"
+              files=".*Dto\.java|.*DTO\.java|.*Request\.java|.*Response\.java|.*Record\.java"/>
 
-    <module name="TreeWalker">
-        <property name="tabWidth" value="4"/>
+    <!-- ========================================================== -->
+    <!-- ENTITIES - JPA                                            -->
+    <!-- ========================================================== -->
+    <suppress checks="MagicNumber|VisibilityModifier|FinalClass|HideUtilityClassConstructor|EmptyLineSeparator"
+              files=".*Entity\.java"/>
 
-        <!-- ============================================ -->
-        <!-- 1. NAMING CONVENTIONS (Clean Code)          -->
-        <!-- ============================================ -->
-        <module name="ConstantName">
-            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
-        </module>
-        <module name="LocalFinalVariableName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="LocalVariableName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="MemberName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="MethodName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="PackageName">
-            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
-        </module>
-        <module name="ParameterName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="StaticVariableName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="TypeName">
-            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="ClassTypeParameterName">
-            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
-        </module>
-        <module name="MethodTypeParameterName">
-            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
-        </module>
+    <!-- ========================================================== -->
+    <!-- ENUMS                                                     -->
+    <!-- ========================================================== -->
+    <suppress checks="MethodLength|MagicNumber|HideUtilityClassConstructor|EmptyLineSeparator"
+              files=".*Enum\.java"/>
 
-        <!-- ============================================ -->
-        <!-- 2. IMPORTS (Organização)                    -->
-        <!-- ============================================ -->
-        <module name="AvoidStarImport"/>
-        <module name="IllegalImport">
-            <property name="illegalPkgs" value="sun, com.sun"/>
-        </module>
-        <module name="RedundantImport"/>
-        <module name="UnusedImports"/>
-        <module name="ImportOrder">
-            <property name="groups" value="/^java\./,javax,org,com"/>
-            <property name="ordered" value="true"/>
-            <property name="separated" value="true"/>
-            <property name="option" value="top"/>
-            <property name="sortStaticImportsAlphabetically" value="true"/>
-        </module>
+    <!-- ========================================================== -->
+    <!-- CONSTANTS                                                  -->
+    <!-- ========================================================== -->
+    <suppress checks="MagicNumber|VisibilityModifier|HideUtilityClassConstructor|EmptyLineSeparator"
+              files=".*Constants\.java|.*Const\.java"/>
 
-        <!-- ============================================ -->
-        <!-- 3. SIZE VIOLATIONS (Uncle Bob)              -->
-        <!-- ============================================ -->
-        <module name="MethodLength">
-            <property name="max" value="15"/>
-            <property name="countEmpty" value="false"/>
-        </module>
-        <module name="ParameterNumber">
-            <property name="max" value="5"/>
-        </module>
-        <module name="AnonInnerLength">
-            <property name="max" value="20"/>
-        </module>
-        <module name="OuterTypeNumber">
-            <property name="max" value="1"/>
-        </module>
+    <!-- ========================================================== -->
+    <!-- CONFIGURATIONS                                             -->
+    <!-- ========================================================== -->
+    <suppress checks="MagicNumber|MethodLength|HideUtilityClassConstructor|EmptyLineSeparator"
+              files=".*Config\.java|.*Configuration\.java|.*Properties\.java"/>
 
-        <!-- ============================================ -->
-        <!-- 4. COMPLEXITY CHECKS                        -->
-        <!-- ============================================ -->
-        <module name="BooleanExpressionComplexity">
-            <property name="max" value="3"/>
-        </module>
-        <module name="CyclomaticComplexity">
-            <property name="max" value="10"/>
-        </module>
-        <module name="NestedForDepth">
-            <property name="max" value="2"/>
-        </module>
-        <module name="NestedIfDepth">
-            <property name="max" value="3"/>
-        </module>
-        <module name="NestedTryDepth">
-            <property name="max" value="2"/>
-        </module>
-        <module name="ReturnCount">
-            <property name="max" value="3"/>
-        </module>
+    <!-- ========================================================== -->
+    <!-- CONTROLLERS - APIs REST                                   -->
+    <!-- ========================================================== -->
+    <suppress checks="MagicNumber|HideUtilityClassConstructor|VisibilityModifier|EmptyLineSeparator"
+              files=".*Controller\.java"/>
 
-        <!-- ============================================ -->
-        <!-- 5. WHITESPACE & FORMATTING                  -->
-        <!-- ============================================ -->
-        <module name="EmptyForIteratorPad"/>
-        <module name="GenericWhitespace"/>
-        <module name="MethodParamPad">
-            <property name="allowLineBreaks" value="true"/>
-        </module>
-        <module name="NoWhitespaceAfter">
-            <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
-        </module>
-        <module name="NoWhitespaceBefore">
-            <property name="tokens" value="SEMI, DOT, POST_DEC, POST_INC"/>
-        </module>
-        <module name="OperatorWrap">
-            <property name="option" value="nl"/>
-        </module>
-        <module name="ParenPad"/>
-        <module name="TypecastParenPad"/>
-        <module name="WhitespaceAfter">
-            <property name="tokens" value="COMMA, SEMI"/>
-        </module>
-        <module name="WhitespaceAround">
-            <property name="allowEmptyConstructors" value="true"/>
-            <property name="allowEmptyMethods" value="true"/>
-            <property name="allowEmptyTypes" value="true"/>
-        </module>
-        <module name="EmptyLineSeparator">
-            <property name="allowNoEmptyLineBetweenFields" value="false"/>
-            <property name="allowMultipleEmptyLines" value="false"/>
-            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
-        </module>
 
-        <!-- ============================================ -->
-        <!-- 6. MODIFIERS                                -->
-        <!-- ============================================ -->
-        <module name="ModifierOrder"/>
-        <module name="RedundantModifier"/>
+    <!-- ========================================================== -->
+    <!-- UTILITY CLASSES - Permite construtores                   -->
+    <!-- ========================================================== -->
+    <suppress checks="HideUtilityClassConstructor|EmptyLineSeparator"
+              files=".*Utils\.java|.*Util\.java|.*Helper\.java|.*Factory\.java|.*Builder\.java"/>
 
-        <!-- ============================================ -->
-        <!-- 7. BLOCKS                                   -->
-        <!-- ============================================ -->
-        <module name="AvoidNestedBlocks">
-            <property name="allowInSwitchCase" value="true"/>
-        </module>
-        <module name="FallThrough"/>
-        <module name="EmptyBlock">
-            <property name="option" value="text"/>
-        </module>
-        <module name="LeftCurly">
-            <property name="option" value="eol"/>
-        </module>
-        <module name="NeedBraces"/>
-        <module name="RightCurly">
-            <property name="option" value="same"/>
-        </module>
+    <!-- ========================================================== -->
+    <!-- MAIN APPLICATION                                           -->
+    <!-- ========================================================== -->
+    <suppress checks="HideUtilityClassConstructor|MethodLength|CyclomaticComplexity|MagicNumber|ImportOrder"
+              files=".*Application\.java"/>
 
-        <!-- ============================================ -->
-        <!-- 8. CODING PROBLEMS                          -->
-        <!-- ============================================ -->
-        <module name="CovariantEquals"/>
-        <module name="EmptyStatement"/>
-        <module name="EqualsHashCode"/>
-        <module name="ExplicitInitialization"/>
-        <module name="HiddenField">
-            <property name="ignoreSetter" value="true"/>
-            <property name="ignoreConstructorParameter" value="true"/>
-        </module>
-        <module name="IllegalCatch">
-            <property name="illegalClassNames" value="java.lang.Exception, java.lang.Throwable, java.lang.RuntimeException"/>
-        </module>
-        <module name="InnerAssignment"/>
-        <module name="MagicNumber">
-            <property name="ignoreNumbers" value="-1, 0, 1, 2"/>
-            <property name="ignoreAnnotation" value="true"/>
-            <property name="ignoreHashCodeMethod" value="true"/>
-            <property name="ignoreFieldDeclaration" value="true"/>
-        </module>
-        <module name="MissingSwitchDefault"/>
-        <module name="ModifiedControlVariable"/>
-        <module name="MultipleVariableDeclarations"/>
-        <module name="SimplifyBooleanExpression"/>
-        <module name="SimplifyBooleanReturn"/>
-        <module name="StringLiteralEquality"/>
-        <module name="UnnecessaryParentheses"/>
+    <!-- ========================================================== -->
+    <!-- TARGET - Ignorar tudo                                     -->
+    <!-- ========================================================== -->
+    <suppress files="[\\/]target[\\/].*" checks=".*"/>
 
-        <!-- ============================================ -->
-        <!-- 9. DESIGN (Clean Architecture)              -->
-        <!-- ============================================ -->
-        <module name="FinalClass"/>
-        <module name="HideUtilityClassConstructor"/>
-        <module name="MutableException"/>
-        <module name="VisibilityModifier">
-            <property name="packageAllowed" value="false"/>
-            <property name="protectedAllowed" value="false"/>
-            <property name="publicMemberPattern" value="^serialVersionUID$"/>
-        </module>
-        <module name="InnerTypeLast"/>
-        <module name="InterfaceIsType"/>
-        <module name="OneTopLevelClass"/>
-        <module name="DeclarationOrder"/>
-
-        <!-- ============================================ -->
-        <!-- 10. MISCELLANEOUS                           -->
-        <!-- ============================================ -->
-        <module name="ArrayTypeStyle"/>
-        <module name="DefaultComesLast"/>
-        <module name="OneStatementPerLine"/>
-        <module name="PackageDeclaration"/>
-        <module name="TodoComment">
-            <property name="severity" value="warning"/>
-            <property name="format" value="(TODO|FIXME|XXX):.*"/>
-        </module>
-        <module name="UpperEll"/>
-        <module name="OuterTypeFilename"/>
-        <module name="EqualsAvoidNull"/>
-        <module name="NoClone"/>
-        <module name="SuperClone"/>
-        <module name="NoFinalizer"/>
-        <module name="SuperFinalize"/>
-
-        <!-- ============================================ -->
-        <!-- 11. REGEX CHECKS                            -->
-        <!-- ============================================ -->
-        <module name="Regexp">
-            <property name="format" value="[ \t]+$"/>
-            <property name="illegalPattern" value="true"/>
-            <property name="ignoreComments" value="true"/>
-            <property name="message" value="Line has trailing spaces."/>
-        </module>
-        <module name="RegexpSinglelineJava">
-            <property name="format" value="System\.(out|err)\.print(ln)?\(|\.printStackTrace\(|e\.printStackTrace\(\)"/>
-            <property name="ignoreComments" value="true"/>
-            <property name="message" value="Use logging framework instead of System.out/err or printStackTrace"/>
-        </module>
-    </module>
-</module>
+</suppressions>

@@ -23,6 +23,7 @@
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
         <pmd.version>7.27.0</pmd.version>
+        <checkstyle.version>14.0.0</checkstyle.version>
     </properties>
 
     <dependencies>
@@ -152,6 +153,7 @@
                     <linkXRef>false</linkXRef>
                     <sourceDirectories>
                         <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                        <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
                     </sourceDirectories>
                 </configuration>
                 <executions>
@@ -162,6 +164,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <!-- GIT HOOKS -->
